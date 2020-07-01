@@ -6,9 +6,11 @@ Dirigida a todo público en especial a los amantes de este anime.
 Donde encontraran una lista de los personajes de la serie con una breve descripción y permitira guardar sus personajes favoritos.
 
 Pantalla de Login:
+
 El usuario se registrará con correo y contraseña al iniciar sesión.
 
 Pantalla principal:
+
 Aparece lista de personajes y el usuario podrá marcar personajes como favoritos.
 
 # Requisitos generales:
@@ -28,9 +30,10 @@ b. Pantalla Principal que muestre los datos obtenidos de la API
 c. Pantalla que muestre los datos que el usuario guardó como Favorito en Firebase
 
 # Guía de Estilos:
-   Color Principal:  #e67e22 (navbar y footer) /
-                     #ffffff (letras principales) /
-                     #e67e22 (otras letras)
+   Color Principal: 
+   #e67e22 (navbar y footer) /
+   #ffffff (letras principales) /
+   #e67e22 (otras letras)
                       
    Tipografía:  Font-family: Avenir, Helvetica, Arial, sans-serif;
    
