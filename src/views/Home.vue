@@ -90,17 +90,6 @@ export default {
 
       axios
         .get(
-          "https://us-central1-proyecto-dbz.cloudfunctions.net/personajes/personajes/" + firebase.auth().currentUser.email 
-        )
-        .then(data => {
-          this.personajesFavoritos = data.data.personajesFavoritos;
-        })
-        .catch(err => {
-          this.cargando = false;
-        });
-
-      axios
-        .get(
           "https://dragonball-api.herokuapp.com/dragonball/api/character/all"
         )
         .then(data => {
@@ -119,18 +108,30 @@ export default {
               like: false
             });
           });
-
+          axios
+        .get(
+          "https://us-central1-proyecto-dbz.cloudfunctions.net/personajes/personajes/" + firebase.auth().currentUser.email 
+        )
+        .then(data => {
+          this.personajesFavoritos = data.data.personajesFavoritos;
+          console.log(this.personajesFavoritos);
           this.cards.forEach((s, i) => {
             let fav = this.personajesFavoritos.find(f => f.id == s.id)
             fav? this.cards[i].like = true : false
-            console.log(this.cards[i]);
+            console.log(fav);
           })
           this.cargando = false;
+        })
+        .catch(err => {
+          this.cargando = false;
+        });
+      this.setCards(this.cards);
         })
         .catch(error => {
           this.cargando = false;
         });
-      this.setCards(this.cards); //ejecuta la acción del vuex
+
+         //ejecuta la acción del vuex
     },
     buscar() {
       this.buscarCharacter();

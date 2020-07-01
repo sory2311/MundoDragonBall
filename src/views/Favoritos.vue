@@ -68,9 +68,8 @@ export default {
     };
   },
   mounted() {
-    //paso 1: mounted=create colocandp axios.get y la url se coloca un proxy de cors
+    //paso 1: mounted=create cuando cargo pag llama a favoritos
     this.getFavoritos();
-    this.personajes();
   },
   methods: {
     getFavoritos() {
