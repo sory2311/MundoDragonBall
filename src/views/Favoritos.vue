@@ -61,7 +61,10 @@ export default {
       favoritos: [],
       cargando: true,
       personajes: [],
-      cargando: false
+      cargando: false,
+      variant: 'light',
+      opacity: 0.85,
+      blur: '2px'
     };
   },
   mounted() {

@@ -49,13 +49,14 @@ export default {
       //this.agregarFavoritos();
       this.$emit("makeLike", this.id);
       let payload = {
+        id: this.id,
         name: this.name,
         gender: this.gender,
         species: this.species,
         description: this.description,
         type: this.type,
         image: this.image,
-        planet: this.planetId,
+        planet: this.planet,
         status: this.status
       };
       this.$store.dispatch("setFavorito", payload);

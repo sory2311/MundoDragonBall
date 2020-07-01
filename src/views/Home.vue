@@ -40,7 +40,7 @@
           :name="card.name"
           :image="card.url_image"
           :gender="card.gender"
-          :especie="card.species"
+          :species="card.species"
           :status="card.status"
           :description="card.description"
           :planet="card.planetId"
@@ -57,7 +57,7 @@
 <script>
 // @ is an alias to /src//import Navbar from '@/components/Navbar.vue'
 import Card from "@/components/Card.vue";
-
+import firebase from "firebase";
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
 
@@ -69,7 +69,11 @@ export default {
       busqueda: "",
       card: [],
       urlBusqueda: "",
-      cargando: true
+      cargando: true,
+      variant: 'light',
+      opacity: 0.85,
+      blur: '2px',
+      personajesFavoritos: []
     };
   },
   mounted() {
@@ -83,11 +87,24 @@ export default {
     ...mapActions(["setCards", "makeLike"]),
 
     getAllCharacters() {
+
       axios
         .get(
-          "https://cors-anywhere.herokuapp.com/https://dragonball-api.herokuapp.com/dragonball/api/character/all"
+          "https://us-central1-proyecto-dbz.cloudfunctions.net/personajes/personajes/" + firebase.auth().currentUser.email 
         )
         .then(data => {
+          this.personajesFavoritos = data.data.personajesFavoritos;
+        })
+        .catch(err => {
+          this.cargando = false;
+        });
+
+      axios
+        .get(
+          "https://dragonball-api.herokuapp.com/dragonball/api/character/all"
+        )
+        .then(data => {
+          //let characters = data.data;
           data.data.forEach(character => {
             this.cards.push({
               id: character.id,
@@ -102,9 +119,15 @@ export default {
               like: false
             });
           });
+
+          this.cards.forEach((s, i) => {
+            let fav = this.personajesFavoritos.find(f => f.id == s.id)
+            fav? this.cards[i].like = true : false
+            console.log(this.cards[i]);
+          })
           this.cargando = false;
-        }).
-        catch(error => {
+        })
+        .catch(error => {
           this.cargando = false;
         });
       this.setCards(this.cards); //ejecuta la acción del vuex

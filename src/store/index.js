@@ -7,7 +7,7 @@ Vue.use(axios);
 
 export default new Vuex.Store({
   state: {
-    correo: "",
+    email: "",
     contraseña: "",
     nombre: "",
     cards: [],
@@ -35,7 +35,7 @@ export default new Vuex.Store({
     SET_FAVORITO(state, personajesFavoritos){
       state.favoritos = personajesFavoritos;
     },
-    USER_LOGIN(state){
+    USER_LOGIN(state, email){
       state.userLogin = !state.userLogin;
     }
   },

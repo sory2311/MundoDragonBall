@@ -58,7 +58,10 @@ export default {
       correo: "",
       contraseña: "",
       error: "",
-      cargando: false
+      cargando: false,
+      variant: 'light',
+      opacity: 0.85,
+      blur: '2px'
     };
   },
 

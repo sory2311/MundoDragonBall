@@ -37,7 +37,10 @@ import Firebase from "firebase";
       return {
       correo: "",
       contraseña: "",
-      cargando: false
+      cargando: false,
+      variant: 'light',
+      opacity: 0.85,
+      blur: '2px'
       }
     },
 
